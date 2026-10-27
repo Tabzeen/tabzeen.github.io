@@ -1,0 +1,32 @@
+<div id="sidebar">
+  <header>
+    <!-- Your Circular Profile Picture -->
+    <img src="https://github.com/Tabzeen.png" alt="Profile Picture" class="profile-pic">
+    
+    <div class="site-title">
+      <a href="{{ '/' | relative_url }}">
+        {{ site.title }}
+      </a>
+    </div>
+    <p class="lead">{{ site.description }}</p>
+  </header>
+
+  <nav id="sidebar-nav-links">
+    <a class="page-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a>
+    <a class="page-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Projects</a>
+    <a class="page-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Blog</a>
+  </nav>
+
+  <nav id="sidebar-icon-links">
+    <!-- Font Awesome GitHub Icon replacing RSS -->
+    <a class="icon" title="GitHub" aria-label="GitHub" href="https://github.com/Tabzeen" target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-github"></i>
+    </a>
+    
+    <!-- Add more icons here if needed by copying the block above -->
+  </nav>
+
+  <p>
+    &copy; MIT License {{ site.time | date: '%Y' }}.
+  </p>
+</div>

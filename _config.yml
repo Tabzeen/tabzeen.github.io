@@ -1,1 +1,29 @@
-remote_theme: "jekyll/minima@1e8a445"
+title: "Tabzeen"
+description: "Currated list of projects"
+repository: "tabzeen/tabzeen.github.io"
+
+defaults:
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: default  
+
+
+collections:
+  projects:
+    output: true 
+    permalink: /projects/:title/
+
+remote_theme: "fongandrew/hydeout"
+plugins:
+  - jekyll-remote-theme
+  - jekyll-paginate
+  - jekyll-include-cache
+
+paginate: 5
+
+exclude:
+  - run.sh
+  - Gemfile
+  - Gemfile.lock

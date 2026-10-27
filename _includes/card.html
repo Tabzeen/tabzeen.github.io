@@ -1,0 +1,32 @@
+<div class="card">
+    <h3>
+        {{ include.project.heading }}
+    </h3>
+
+    <div class="card_body">    
+        <div class="img_left">
+            <img src="{{ include.project.image_link }}" alt="{{ include.project.image_alt}}"> 
+        </div>
+        <div class="content_right">
+            {{ include.project.teaser | markdownify }}
+            <div class="links">
+                {% if include.project.has_blog %}
+                    <div class="icon_link_pair">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <a href="{{ include.project.url | relative_url }}" class="card-link">
+                            Read Details
+                        </a>
+                    </div>
+                {% endif %}
+                {% for link in include.project.links %}
+                    <div class="icon_link_pair">
+                        {% if link.icon %}<i class="{{ link.icon }}"></i>{% endif %}
+                        <a href="{{ link.url }}" class="card-link" target="_blank" rel="noopener noreferrer">
+                                {{ link.text }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

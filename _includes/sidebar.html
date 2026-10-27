@@ -1,6 +1,5 @@
 <div id="sidebar">
   <header>
-    <!-- Your Circular Profile Picture -->
     <img src="https://github.com/Tabzeen.png" alt="Profile Picture" class="profile-pic">
     
     <div class="site-title">
@@ -14,19 +13,16 @@
   <nav id="sidebar-nav-links">
     <a class="page-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Home</a>
     <a class="page-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Projects</a>
-    <a class="page-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Blog</a>
+    <a class="page-link {% if page.url == '/' %}active{% endif %}" href="{{ '/' | relative_url }}">Blog Entries</a>
+    <a class="page-link {% if page.url == '/' %}active{% endif %}" href="https://github.com/Tabzeen">Github Profile</a>
   </nav>
 
-  <nav id="sidebar-icon-links">
-    <!-- Font Awesome GitHub Icon replacing RSS -->
-    <a class="icon" title="GitHub" aria-label="GitHub" href="https://github.com/Tabzeen" target="_blank" rel="noopener noreferrer">
-      <i class="fa-brands fa-github"></i>
-    </a>
-    
-    <!-- Add more icons here if needed by copying the block above -->
-  </nav>
 
   <p>
-    &copy; MIT License {{ site.time | date: '%Y' }}.
+    Page design based on the <a href="https://fongandrew.github.io/hydeout/">Hydeout</a> theme for <a href="https://jekyllrb.com/">Jekyll</a> 
+  </p>
+
+  <p>
+    &copy; <a href="/LICENSE.md">MIT License</a> {{ site.time | date: '%Y' }}.
   </p>
 </div>

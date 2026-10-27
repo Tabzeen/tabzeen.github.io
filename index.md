@@ -3,6 +3,13 @@ layout: default
 title: Home 
 sidebar_link: true
 ---
+# Welcome!
+
+Welcome to my page!
+This page serves as a prettier version of my github profile page, giving my projects more context
+and better formatting than a normal readme allows. 
+The following lists are segmented into two categories: "Featured projects", which are projects of a more defined
+scope and a substential time investment, and smaller and more open-ended projects.   
 
 # Featured Projects  
 

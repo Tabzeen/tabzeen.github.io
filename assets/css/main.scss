@@ -67,21 +67,25 @@ body,
 
 
 .profile-pic {
-  border-radius: 50%; /* Makes it a perfect circle */
+  border-radius: 50%; 
   object-fit: cover;
   margin-bottom: 1rem;
-  border: 3px solid rgba(255, 255, 255, 0.1); /* Optional: subtle ring around the image */
+  border: 3px solid rgba(255, 255, 255, 0.1); 
   transition: transform 0.3s ease;
 }
 
 
 /* Sidebar Icon Adjustments */
 #sidebar-icon-links .icon {
-  color: rgba(255, 255, 255, 0.85); /* Matches theme text color */
+  color: rgba(255, 255, 255, 0.85); 
   font-size: 1.5rem;
   transition: color 0.3s ease;
 }
 
 #sidebar-icon-links .icon:hover {
   color: #fff;
+}
+
+#sidebar-nav-links {
+  margin-bottom: 2rem; 
 }

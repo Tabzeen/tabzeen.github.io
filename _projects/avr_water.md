@@ -11,6 +11,6 @@ links:
       icon: "fa-brands fa-github"
 featured: true
 priority: 2
-has_blog: false
+has_blog: true 
 ---
 

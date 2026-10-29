@@ -1,7 +1,7 @@
 ---
-heading: "CAN-FD-FI: A Hardware based CAN FD Fault Injector written in VHDL"
+title: "CAN-FD-FI: A Hardware based CAN FD Fault Injector written in VHDL"
 image_link: "assets/images/can-fd-fi.png"
-image_alt: "Gaming"
+image_alt: "Plot of a CAN Fault Injection"
 teaser: "
     A CAN and CAN-FD compatible protocol aware fault injector. Written for the Zynq UltraScale+ MCSoC.
     written in the context of my master's thesis and fully open source under the CERN OHL

@@ -4,7 +4,7 @@ image_link: "https://github.com/Tabzeen/nds_projects/raw/main/Backgrounds/Parall
 image_alt: "A Screenshot of a Train running across a bridge with a city in the background"
 teaser: "
     A collection of smaller homebrew demos targeting the Nintendo DS built to make myself
-    familiar with the consoles architecture.
+    familiar with the console's architecture.
     "
 links:
     - text: "Github Repo"

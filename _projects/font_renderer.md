@@ -1,9 +1,9 @@
 ---
-title: "NDS Variabe-Width-Font Rendering Engine"
+title: "NDS Variable-Width-Font Rendering Engine"
 image_link: "assets/images/nds_vwf.jpg"
 image_alt: "A DSi console with text printed on the top screen"
 teaser: "
-    A generator, custom file encoding and compact homebrew library for the Nintendo DS to render VWFs utilizing tilemaps and tilesets. Curently work in progress. 
+    A generator, custom file encoding and compact homebrew library for the Nintendo DS to render VWFs utilizing tilemaps and tilesets. Currently work in progress. 
     "
 links:
     - text: "Github Repo"

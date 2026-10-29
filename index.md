@@ -9,7 +9,7 @@ Welcome to my page!
 This page serves as a prettier version of my github profile page, giving my projects more context
 and better formatting than a normal text-only readme allows. 
 The following lists are segmented into three categories: "Featured projects", which are projects of a more defined
-scope and a substential time investment, "academic projects", which are more research focused and created in a university context, and smaller and more open-ended projects.   
+scope and a substantial time investment, "academic projects", which are more research focused and created in a university context, and smaller and more open-ended projects.   
 
 # Featured Projects  
 

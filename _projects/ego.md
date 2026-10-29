@@ -6,7 +6,7 @@ teaser: "
   A single-view human reconstruction method for egocentric fisheye cameras to generate a fully textured, posed SMPL mesh. Developed by combining the SceneEgo pose estimation framework with the SMPLitex generative model to process monocular RGB fisheye images.
     "
 links:
-    - text: "Reat the Report"
+    - text: "Read the Report"
       url: "/assets/pdf/vs_comp_rep.pdf"
       icon: "fa-solid fa-book"
 type: 2

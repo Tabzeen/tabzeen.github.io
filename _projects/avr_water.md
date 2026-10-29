@@ -3,7 +3,7 @@ title: "AVR-Based Automatic Plant Watering System"
 image_link: "assets/images/avr.png"
 image_alt: "A Printed-Circuit-Board"
 teaser: "
-    An AVR-MCU-based automatic plant watering system. End-to-end developed on a custom PCB in Altium designer, bare-metal C code without the use of HALs and a custom case designed in FreeCAD    
+    An AVR-MCU-based automatic plant watering system. End-to-end developed on a custom PCB in Altium Designer, bare-metal C code without the use of HALs and a custom case designed in FreeCAD    
     "
 links:
     - text: "Github Repo"

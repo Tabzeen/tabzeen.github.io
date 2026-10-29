@@ -9,7 +9,7 @@ links:
     - text: "Github Repo"
       url: "https://github.com/Tabzeen/chip-8-emu"
       icon: "fa-brands fa-github"
-featured: false 
+type: 3 
 has_blog: false 
 priority: 4
 ---

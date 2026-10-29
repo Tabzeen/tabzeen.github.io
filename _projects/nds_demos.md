@@ -8,10 +8,10 @@ teaser: "
     "
 links:
     - text: "Github Repo"
-      url: "https://github.com/Tabzeen/CAN-FD-FI"
+      url: "https://github.com/Tabzeen/nds_projects"
       icon: "fa-brands fa-github"
-featured: false 
+type: 3
 priority: 4
-has_blog: true
+has_blog: false
 ---
 

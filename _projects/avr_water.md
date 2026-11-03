@@ -12,11 +12,13 @@ links:
       icon: "fa-brands fa-github"
 type: 1
 priority: 2
-has_blog: false
+has_blog: true
 ---
 
 # {{page.blog_title}}
 *Note: This writeup has been adapted from my presentation slides initially made in September 2025*
+
+![Sketch of the watering system](/assets/images/avr_water/header.jpg)
 ## Abstract
 
 In the context of a larger university project, I have built an fully automatic plant watering system. The system uses a capacitive soil sensor to detect moisture and triggers a motorized pump whenever the levels drop outside of a user defined range. As an interface to the user, the system integrates a simple 2 row LCD display to show status and settings. Configuration of water thresholds can be performed via two buttons on the top of the unit. As protection for overwatering, the system features a failure protection, which disables the pump when the sensor values do not change during watering.
@@ -48,7 +50,7 @@ Before designing the circuit, I began prototyping using an Arduino Nano equipped
 
 Components like the LCD and the soil sensor connected easily to the Nano prototype board. The pump, however, proved to be more of a problem. Its inrush current caused the AVR to brown out during startup, so for software development purposes, I replaced it with a simple indicator LED.
 
-## Software architecture and interface
+## Software Architecture and Interface
 
 With the prototyping hardware assembled and the software stack established, I started developing the firmware.
 
@@ -60,38 +62,94 @@ Instead, I manually reconstructed the I2C interface from the library's source co
 
 For the interface, I was inspired by classic Casio watches, using only two buttons to cycle through menus and adjust configurations. It is driven by a simple state machine controlled by the SET and MODE buttons. Pressing MODE cycles through three states:
 - **Monitoring Mode:** Displays the current moisture reading and allows the motor to be disabled with the SET button.
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+  <img src="/assets/images/avr_water/monitor1.png" alt="Screw inserts into case" style="width: 30%; height: auto;" />
+  <img src="/assets/images/avr_water/monitor2.png" alt="Inner view of the case" style="width: 30%; height: auto;" />
+</div>
 - **Set Mode:** Configures the minimum and maximum moisture percentage bounds for watering.
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+  <img src="/assets/images/avr_water/set1.png" alt="Screw inserts into case" style="width: 30%; height: auto;" />
+  <img src="/assets/images/avr_water/set2.png" alt="Inner view of the case" style="width: 30%; height: auto;" />
+</div>
 - **Store Mode:** Saves the current settings into a preset slot in the EEPROM, which is automatically loaded on startup.
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+  <img src="/assets/images/avr_water/load1.png" alt="Screw inserts into case" style="width: 30%; height: auto;" />
+  <img src="/assets/images/avr_water/load2.png" alt="Inner view of the case" style="width: 30%; height: auto;" />
+</div>
 
 The min and max thresholds are stored directly as 8-bit integers in the first two addresses of the EEPROM (`0x00` and `0x01`). In the background, the main loop periodically pulls raw data from the sensor, converts it to a percentage, and compares it against the saved EEPROM bounds to control the motor.
 
-## Board design and architecture
+## Board Design and Architecture
 
 Once the software and hardware worked on the prototype, I started working on the PCB itself. This project was my first real experience with Altium Designer and PCB design in general. As a result, the board went through several major iterations as I received feedback from my supervisor and gained more experience.
+
+![Images of PCB board revisions](/assets/images/avr_water/board_rev.png)
 
 The first revision of the board established the general layout for the SMD components and jumper pins for external parts, using standard traces on the bottom layer for ground. In the second revision, I replaced those ground traces with a full polygon pour for the ground plane.
 
 The third version was a larger redesign that addressed the decoupling needed for the AVR to run in parallel with the motor pump, adding the necessary capacitors and inductors to keep the IC stable while the motor runs. Final adjustments before sending the design out for manufacturing included additional debug LEDs, a polygon pour for the motor section, and M3 mounting holes at the outer edges of the board.
 
-The final design is a 2-layer FR-4 board measuring 66mm by 78mm. The top layer is used for the motor and controller sections, while the bottom layer acts primarily as a ground plane. Power is supplied via a DC barrel jack rated for up to 5V at 1.7A. The board includes I/O pin headers, two I2C connectors, an ISP header, a UART interface, and two onboard LEDs. The main component is an ATmega328P microcontroller paired with an external crystal oscillator, providing 32KB of flash storage and 1KB of EEPROM.
+
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+  <img src="/assets/images/avr_water/render.png" alt="3D Altium render" style="width: 30%; height: auto;" />
+  <img src="/assets/images/avr_water/pcb_photo.png" alt="Finished PCB" style="width: 30%; height: auto;" />
+</div>
+
+The final design is a 2-layer FR-4 board measuring 66mm by 78mm. The top layer is used for the motor and controller sections, while the bottom layer acts primarily as a ground plane. Power is supplied via a DC barrel jack rated for up to 5V at 1.7A. The board includes I/O pin headers, two I2C connectors, an ISP header, a UART interface, and two onboard LEDs. The main component is an ATmega328P microcontroller paired with an external crystal oscillator, providing 32KB of flash storage and 1KB of EEPROM. The full schematic is visualized below:
+
+
+
+![Board schematic](/assets/images/avr_water/schematic.png)
 
 For the interface and motor mounts, I manually sawed and drilled a perfboard to fit the required dimensions. While not particularly pretty, it served its purpose and was manageable under the given time constraints.
+
+![DIY Motor board](/assets/images/avr_water/motor.png){: width="30%" ;"}
 
 Flashing worked identically to the Arduino prototype via the ISP pins. However, during the flashing process, I managed to brick one board by setting the wrong clock fuse. Instead of setting the CKSEL fuse to an external crystal, I accidentally configured it to an external clock in AVRDude. Since the crystal received no power, the AVR ran at 0Hz and was essentially bricked. Other than that, the boards worked as expected, including the motor start and stop behavior.
 
 
+![Flashing setup](/assets/images/avr_water/flashing.jpg){: width="80%" ;"}
+
 ## Case Design and Assembly
 
-Finally, the system needed a case to house the boards. At the very beginning of the project, before any hardware work was done, I drafted a concept image of what the final system should look like.
+Finally, the system needed a case to house the boards. At the very beginning of the project, before any hardware work was done, I drafted a concept image of what the final system should look like:
+
+![Case Concept](/assets/images/avr_water/concept.jpg){: width="50%" ;"}
 
 However, once the internal components were assembled, the external design had to change quite a bit to fit the actual board dimensions. To get the enclosure right, I remeasured everything and drew a first layout sketch on paper.
 
+![Sketches of case](/assets/images/avr_water/drawings.png)
+
 Using my CAD experience from earlier 3D-printing projects, I modeled the enclosure in FreeCAD as a two-part shell. I 3D-printed it in green and white PLA with thick walls and 100% infill to make it sturdy. The final dimensions came out to 138 x 85 x 80 mm.
+
+
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+  <img src="/assets/images/avr_water/case_cad_1.png" alt="Top part of case CAD" style="width: 35%; height: auto;" />
+  <img src="/assets/images/avr_water/case_cad_2.png" alt="Bottom part of case CAD" style="width: 30%; height: auto;" />
+</div>
+
+When printing out the model, it looked like this:
+
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+  <img src="/assets/images/avr_water/case1.jpg" alt="Front view of case" style="width: 30%; height: auto;" />
+  <img src="/assets/images/avr_water/case2.jpg" alt="Back view of case" style="width: 35%; height: auto;" />
+</div>
 
 To close the unit, I added threaded inserts into the plastic casing so the assembly could be bolted together flush with M3 screws. The front and sides have cutouts for the LCD interface and power jack.
 
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+  <img src="/assets/images/avr_water/case_screw.jpg" alt="Screw inserts into case" style="width: 30%; height: auto;" />
+  <img src="/assets/images/avr_water/case_inner.jpg" alt="Inner view of the case" style="width: 35%; height: auto;" />
+</div>
 The cramped jumper cables made it a bit difficult to close the case properly, which took a few attempts. The jumper connections also proved to be somewhat unreliable at this stage, easily coming loose while putting the case together. However, once the lid was finally on, everything inside stayed in place, and the device powered on and worked as intended.
 
-## Roadblocks and summary
+<div style="display: flex; gap: 12px; align-items: flex-start;">
+  <img src="/assets/images/avr_water/assembly_no_case.jpg" alt="Assembly without case" style="width: 50%; height: auto;" />
+  <img src="/assets/images/avr_water/assembly_case.jpg" alt="Assembly with case" style="height: 450px; width: auto;" />
+</div>
+
+## Summary and Roadblocks
+
+![Finished Design](/assets/images/avr_water/finished.jpg)
 
 Overall, I consider the project a success. However, there are a few things that could be improved and iterated on given more time. For one, the makeshift perfboards could be replaced with custom PCBs to properly mount the pump and the buttons. Since those boards wouldn't require any extra active components, ordering them would be relatively cheap. The second issue with the design was relying on jumper cables for the final wiring between components, which led to disconnects during both prototyping and final assembly. In future projects or revisions, I would probably use JST headers for permanent connections instead and only rely on jumper wires for flashing or debugging. All in all, it was a great introduction to PCB design and electrical engineering, and I learned a lot.

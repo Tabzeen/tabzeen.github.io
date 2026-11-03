@@ -10,6 +10,6 @@ links:
       url: "/assets/pdf/vs_comp_rep.pdf"
       icon: "fa-solid fa-book"
 type: 2
-priority: 2
+priority: 1
 has_blog: false
 ---

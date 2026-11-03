@@ -14,6 +14,6 @@ links:
       url: "https://github.com/WaterFutures/AI-for-Drinking-Water-Chlorination-Challenge-IJCAI-25"
       icon: "fa-brands fa-github"
 type: 2
-priority: 1
+priority: 2
 has_blog: false
 ---

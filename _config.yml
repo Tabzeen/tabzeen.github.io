@@ -27,3 +27,8 @@ exclude:
   - run.sh
   - Gemfile
   - Gemfile.lock
+
+
+include:
+  - favicon.ico
+  - favicon.png
